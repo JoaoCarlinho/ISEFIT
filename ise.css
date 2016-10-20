@@ -1,0 +1,487 @@
+body{
+        font-family: "Arial", Arial, verdana, sans-serif; overflow: hidden scroll;
+        white-space:nowrap;    display: block; background-color:#FFFFFF; 
+}
+
+body a{
+        text-decoration: none;
+}
+
+
+
+
+/***************************************************     Start of header bar  css***************************************************************/
+
+.appBar{
+        background-color:black; color:#C0C0C0; margin:0 auto 0 auto;
+}
+
+.appBar a{color:#C0C0C0;
+        
+}
+
+.appBar ul li{
+        text-decoration:none;
+        
+}
+
+/* Remove margins and padding from the list, and add a black background color */
+ul.appLink {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+/* Float the list items side by side */
+ul.appLink li {float: left;}
+
+/* Style the links inside the list items */
+ul.appLink li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.appLink li a:hover {background-color: #111;}
+
+
+.app_logo{
+        color:white; font-weight:bold; 
+}
+
+
+
+
+/***************************************************     Start of banner and below css*********************************************************/
+
+
+.container{
+   display:block; overflow:hidden scroll; margin:0 auto 0 auto; clear:both;
+}
+
+.banner{
+        clear:both; border-bottom:3px solid #CEF6F5; 
+        border-top:3px solid #CEF6F5; border-style:ridge;  margin:  0 auto 0 auto;
+        border-right:none; border-left:none;  
+         color:#0A0A2A;
+}
+
+.banner a{
+        text-decoration: none;
+}
+
+.banner_logo{
+
+}
+
+.banner_image{
+          margin: 0 0 0 0;
+}
+
+.social_media{
+         overflow:hidden; height:50px; margin:0 auto 0 auto; width:190px;
+}
+
+.instagram{
+        float:left; margin: 0 10px 0 0; width:48px; height:48px;
+}
+.facebook{
+        background:url(facebook.jpg); background-size:contain; float:left;
+        height:48px; width:48px; margin: 0 10px 0 0;  border-radius:10px; 
+}
+
+.twitter{
+        background:url(twitpick.jpeg); background-size:contain; float:left;
+        height:47px; width:61px; border-radius:10px; margin: 0 10px 0 0;
+}
+
+
+.motto{
+        color:#0A0A2A; margin:50px 0 0 0; text-align:center; font-size:30px;
+}
+
+
+.user_info{
+        height:500px; width:300px; 
+}
+
+.gravatar{
+        height:50px; width:50px; float:left; margin:0 15px 0 0;
+}
+
+.quick_info{
+        height:50px; float:left; width:235px; font-size:12px;
+}
+
+.relationships{
+        clear:both; margin:0 0 0 0; height:50px; width:300px;
+}
+.following{
+         width:50px; height:50px; margin:15px 20px 0 0; float:left; font-size:12px;
+}
+.followers{
+         width:50px; height:50px; margin: 15px 0 0 0; float:left; font-size:12px;
+}
+
+.workout_box{margin:0 0 0 0;
+        
+}
+
+
+
+
+/***************************************************     Start of navigation bar and below css***************************************************/
+
+
+.navBar{
+        color:#FFFFFF; font-size:14px; margin:0 0 0 0;  
+        width:100%; clear:both; border-radius:20px;
+}
+
+.navBar a{
+        color:#FFFFFF;
+}
+
+.navLink {
+        border-radius:10px; margin-right:1px;
+        height: 30px; text-align:center; vertical-align:middle; 
+        background: -webkit-linear-gradient(#CEF6F5, #0B0B3B, #CEF6F5); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(#CEF6F5, #0B0B3B, #CEF6F5); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(#CEF6F5, #0B0B3B, #CEF6F5); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(#CEF6F5, #0B0B3B, #CEF6F5); /* Standard syntax (must be last) */
+}
+
+
+
+
+/***************************************************     Start of main sectiond and below css****************************************************/
+
+.main a{
+   color:#000000;
+}
+
+.slidebar{
+        border: 1px solid #000000; 
+}
+
+.loginButton{
+        border: 1px solid black; height:50px; border-radius:10px; line-height:50px; background:#cce6ff;
+}
+
+.createWorkoutButton{
+    background: #99ccff; 
+    border-radius:10px; height:50px; width:200px; line-height:50px;
+}
+
+
+
+
+
+
+/***************************************************     Start of css for dynamic boxes**********************************************************/
+
+.left_nav{
+        float:left; width:200px; color:black; margin:15px 0 0 0; font-size:12px;
+}
+        
+.left_link{
+        border:solid 1px; border-color:#000000; border-top-color:#FFFFFF; border-right-color:#FFFFFF;
+        width:200px; border-left-color:#FFFFFF; height:30px; text-align:center; margin-top:10px;
+}
+
+
+#mbox{
+        width:450px; margin: 0 auto 0 auto; float:left; position:relative;
+}
+
+.logo_center{
+        width:400px; height:260px;   background-image:url(opaque_ise.png); 
+        background-size:contain; background-repeat:no-repeat; z-index:-10; background-color:#0A0A2A;
+        background-position: center;
+}
+
+.blank{
+        width:400px; height:260px;  margin: 0 auto 0 auto;  z-index:-10; background:transparent;
+}
+
+.profile_center{
+        width:400px; height:100px; border:solid 6px #A9D0F5;
+}
+
+.m{
+         width:400px; height:260px; margin:0 auto 0 auto; opacity:1; position:absolute; left:0px;    top:0px;
+}
+
+#m1{
+     visibility: hidden;    
+}
+
+#m2{
+     visibility: hidden;   
+}
+#m3{
+     visibility: hidden;   
+}
+#m4{
+     visibility: hidden; 
+}
+#m5{
+     visibility: hidden;   
+}
+#m6{
+     visibility: hidden;   
+}
+#m7{
+     visibility: hidden;   
+}
+#m8{
+     visibility: hidden;   
+}
+#m9{
+     visibility: hidden;   
+}
+
+
+.optimize_pic{
+        width:400px; height:260px;  margin: 0 auto 0 auto; background-image:url(ise_trainer.jpg); 
+        background-size:contain; background-repeat:no-repeat;  opacity:1; z-index:-10;
+        background-position: center; 
+}
+
+.success_pic{
+        width:400px; height:260px;  margin: 0 auto 0 auto;background-image:url(mariaJump.jpg);
+        background-size:contain; background-repeat:no-repeat; opacity:1; z-index:-10;
+    
+        
+}
+
+.specialization_pic{
+        width:400px; height:260px;  margin: 0 auto 0 auto; background-image:url(jeanAbs.jpg); 
+        background-size:contain; background-repeat:no-repeat;  opacity:1; z-index:-10;
+        
+}
+
+
+.program_pic{
+        width:400px; height:260px;  margin: 0 auto 0 auto;  background-image:url(isebod.jpg); 
+        background-size:contain; background-repeat:no-repeat; opacity:1;
+        background-position: center;
+}
+
+#buttonList{
+        margin:0 auto 0 auto; height:80px;
+}
+
+#juanResponse{
+        border:solid black 1px; position: absolute; top:80px; left:0px;
+}
+
+.nameTagPic{width:400px; height:160px;  margin:0 auto 0 auto;  background-image:url(nameTagPic.png); 
+        background-size:contain; background-repeat:no-repeat; opacity:1;
+        background-position: center;
+        
+}
+
+.diplomaPic{width:400px; height:160px;  margin: 0px auto 0 auto;  background-image:url(diplomaPic.png); 
+        background-size:contain; background-repeat:no-repeat; opacity:1;
+        background-position: center;
+        
+}
+
+.lightningPic{width:400px; height:160px;  margin: 0px auto 0 auto;  background-image:url(lightningPic.png); 
+        background-size:contain; background-repeat:no-repeat; opacity:1;
+        background-position: center;
+        
+}
+
+.historyPic{width:400px; height:160px;  margin: 0px auto 0 auto;  background-image:url(historyPic.png); 
+        background-size:contain; background-repeat:no-repeat; opacity:1;
+        background-position: center;
+        
+}
+
+
+#juancarlo{
+        clear:both;  position:relative;
+        width:800px; height:500px;  margin:0 auto 0 auto;
+}
+
+.juan_link{
+        float:left; color:#FFFFFF; background-size:contain; margin:0 auto 0 auto;
+        z-index:2; background-repeat:no-repeat;  
+        overflow:hidden; white-space: nowrap; 
+}
+
+
+
+#juan_logo{
+        width:150px;  height:150px;  margin:200px auto 0 240px;
+        color:#FFFFFF; z-index:0; float:left;
+        
+}
+
+#tag_info{
+        width:500px;  height:150px;  margin:200px 0 0 20px;
+        visibility:hidden; color:#0A0A2A; z-index:10; opacity:1; float:left;
+}
+
+#deg_info{
+        width:500px;  height:150px;  margin:-150px 0 0 20px;
+        visibility:hidden; color:#0A0A2A; z-index:10; opacity:1; float:left;
+}
+
+#spec_info{
+        width:500px;  height:150px;  margin:-150px 0 0 20px;
+        visibility:hidden; color:#0A0A2A; z-index:10; opacity:1; float:left;
+}
+
+#back_info{
+        width:500px;  height:150px;  margin:-150px 0 0 20px;
+        visibility:hidden; color:#0A0A2A; z-index:10; opacity:1; float:left;
+}
+
+#service_box{
+        float:left; height:400px;  width:130px; overflow:hidden scroll; 
+        margin:0 auto 0 auto; color:#0A0A2A; 
+}
+
+.service_list{
+        clear:both; margin:auto 0 auto 0; height:35px; width:130px; padding:15px 0 0 0;
+        text-align:center; border-radius:12px; background:#FFFFFF; vertical-align:middle;
+        border-width:3px; border-style:ridge;
+}
+
+#service_show{
+        float:left; width:500px; height:250px; margin:50px 0 0 20px;
+}
+
+
+
+
+
+.option{
+        float:left; height:40px; width:250px; color:#0A0A2A; padding:20px 0 20px 0; font-size:40px;
+        background-color:#99CCFF; border:#FFFFFF; border-radius:25px; border-style:outset; 
+        margin-top:20px;  margin-bottom:20px;
+        
+}
+
+.option_info{
+                width:230px; height:450px; margin:0 0 0 30px; color:#FFFFFF; font-size:20px; float:left;
+}
+.price{
+        background-color:green; font-size:35px; width:150px; border-radius:25px;
+}
+
+#four_visits{
+                visibility:hidden;
+}
+
+#eight_visits{
+                margin:-600px auto 0 auto; visibility:hidden;
+}
+
+#twelve_visits{
+                margin:-600px auto 0 auto; visibility:hidden;
+}
+
+
+/***************************************************     Start of css for workout creation***************************************************************/
+
+
+.exTable{
+        margin:0 auto 0 auto;
+}
+
+.exercise{
+    border-bottom:1; border-top:0; border-right:0; border-left:0;
+}
+
+.setNumber{
+    border-right:0;
+}
+
+.repDurWei{
+    border-right:0; border-left:0; border-bottom: 0;
+}
+
+
+
+.footer{
+        margin:0px auto 0 auto; overflow:hidden scroll; clear:both; background:#000000; color:#FFFFFF;
+        
+}
+
+.footer a{
+        color:#C0C0C0;
+}
+ 
+a[href="mailto:gmail.com"] {
+        color:#FFFFFF;
+}
+
+.footer_slider{ background-image:url(opaque_ise.png); 
+                background-size:contain; background-repeat:no-repeat; background-position: center; 
+        
+}
+
+.footer_links{
+        
+}
+
+contactInfo{
+        margin:0 20px 0 0; overflow:hidden scroll;
+}
+
+.contact{
+        height:25px;
+}
+
+.certList{
+        
+}
+
+.locale{
+}
+
+
+
+
+
+
+
+
+
+/* When the screen is less than 680 pixels wide, hide all list items, except for the first one ("Home"). Show the list item that contains the link to open and close the appLink (li.icon) */
+@media screen and (max-width:667px) {
+    ul.appLink li.icon {
+        float: right; 
+    
+  }
+  ul.appLink li.hide {display: none;}
+}
+
+/* The "responsive" class is added to the appLink with JavaScript when the user clicks on the icon. This class makes the appLink look good on small screens */
+@media screen and (max-width:667px) {
+  ul.appLink.responsive {position: relative;}
+  ul.appLink.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.appLink.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.appLink.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}

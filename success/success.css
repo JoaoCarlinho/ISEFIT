@@ -1,0 +1,12 @@
+.success_link{
+    height:450px; width:200px; float:left; display:block;
+}
+
+.success_pic{
+    float:left; width:200px; height:400px; margin:0 0 0 0;
+}
+
+.success_story{
+    width:550px; height:400px; color:#FFFFFF; margin:0 0 0 225px; overflow:hidden scroll;
+    white-space:normal; padding:0 0 0 0;
+}
