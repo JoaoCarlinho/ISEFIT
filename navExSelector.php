@@ -1,15 +1,24 @@
-<?php   include('session.php');    
-?>
-<?php
+<?php   include('session.php');
+        include('getAdaptName.php');
+        /*************************************** This page will add exercises to the workoutBasket by sending workoutID, exName, setCount and adaptation in $_POST with session client ID******************************/
+$db = connect();
+
 /**This page accepts focus and adaptation and assign it to a new workout, or accept workoutID to update given workout ID 
       A workoutBasekt line will be created for eqch set of each exercise submitted**/
       
-/*****************************************************Create a new workout***********************************************/
-    if(isset($_SESSION['clientID']) && isset($_POST['adaptID']) && isset($_POST['focusID']) && isset($_POST['datePlanned'])){
+/*****************************************************remove exercise from workoutBasket***********************************************/
+    if(isset($_SESSION['clientID']) && isset($_GET['index']) && isset($_GET['exID']) && isset($_GET['workoutID'])){
+/*******************************************Ensure this person is authorized to edit workouts for this clientID***********/
+        include('workoutEditAuth.php');
+/****************Go to ExInserter to remove this exercise from workoutBasket for this workoutID**************/
+        include('navExInserter.php');
+        
+    }elseif(isset($_SESSION['clientID']) && isset($_POST['adaptID']) && isset($_POST['focusID']) && isset($_POST['datePlanned'])){
+/*****************************************************Create a new workout***********************************************/       
         $clientID = $_SESSION['clientID'];
         $datePlanned = $_POST['datePlanned'];
         $adaptID = $_POST['adaptID'];
-        include('getAdaptName.php');
+        $adaptName = getAdaptName($adaptID);
         $focusID = $_POST['focusID'];
         include('getFocusArea.php');
         $createDate = date("Y-m-d H:i:s");
@@ -24,24 +33,28 @@
                 $oldMax = $info['MaxID'];
             }
             /*** research the result of a max function on an empty table ******/
-            $workoutID = $oldMax + 1; ?>
-            <center><?php echo('new workout number: '.$workoutID); ?></center>
+            $workoutID = $oldMax + 1;
+            $workoutMessage = 'new workout number: '.$workoutID
+            ?>
+            <center><?php echo "<script type='text/javascript'>alert('$workoutMessage');</script>"; ?></center>
         
         <?php
             
         }
 /*********************update workouts table with new workout for client*****************/        
         $query = $db->prepare("INSERT INTO workouts (workoutID, createDate, clientID, adaptation, focus, datePlanned) VALUES(?, ?, ?, ?, ?, ?)") or die("could not search");
-                    $query->execute(array($workoutID, $createDate, $clientID, $adaptName, $focusArea, $datePlanned));
+        $query->execute(array($workoutID, $createDate, $clientID, $adaptName, $focusArea, $datePlanned));
         
         
         
     }elseif(isset($_SESSION['clientID']) && isset($_POST['exID']) && isset($_POST['setCount']) && isset($_POST['adaptID']) && isset($_POST['workoutID'])){
+/*********************************************************add exercise to existing workout******************************/        
         include('workoutEditAuth.php');
         /***insert new exercise into basket********/
         $workoutID = $_POST['workoutID'];
         include('navExInserter.php');
-    }elseif (isset($_GET['workoutID'])  && isset($_SESSION['clientID'])){
+    }elseif(isset($_GET['workoutID'])  && isset($_SESSION['clientID'])){
+/**********************************open existing workout for addition of exercises**************************************/
             $workoutID = $_GET['workoutID'];
             $clientID = $_SESSION['clientID'];
             
@@ -52,14 +65,17 @@
             $row = $query->fetchAll(PDO::FETCH_ASSOC);
             $count = count($row);
             if($count != 1){
+                $db = null;
                 header('Location: navIndex.php');
             }else{
                 foreach($row as $info){
                     $datePlanned = $info['datePlanned'];
                     $adaptation = $info['adaptation'];
                 }
+                
             }
     }else{
+        $db = null;
         header('Location: navIndex.php?message=no_workoutID_here');
     }
     
@@ -69,7 +85,6 @@
         $list = array();
     
         /*****************************************Show profile workout requests that have not yet been filled*********************************/
-        $db = connect();
         $query = $db->prepare("SELECT adaptation, modeID, focus, datePlanned
                                FROM workouts 
                                WHERE workoutID = '$workoutID'") or die("could not check member");
@@ -84,14 +99,10 @@
                 $list[2] = $info['datePlanned'];
             }
             include('getModeName.php');
-        }
-    }
+            
+        } 
+    }$db = null;
     /*******************set post value for workoutID****************************************/
-
-/*************************************** This page will add exercises to the workoutBasket by sending workoutID, exName, setCount and adaptation in $_POST with session client ID******************************/
-require_once('connect.php');
-$db = connect();
-
 ?>
 <!DOCTYPE html>
 <html>

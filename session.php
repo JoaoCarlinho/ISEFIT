@@ -1,7 +1,7 @@
 <?php
+require('connect.php');
 session_start();
-
-include('connect.php');
+$db = connect();
 if(isset($_SESSION['username'])){
 
     if(isset($_POST['ring']) && isset($_POST['username'])){
@@ -9,7 +9,6 @@ if(isset($_SESSION['username'])){
         $username = $_POST['username'];
         
         //Authenticate client for current session
-        $db = connect();
         $query = $db->prepare("SELECT clientID, email, passwordDigest, activated FROM clients WHERE email = '$username' LIMIT 1") or die("could not check member");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -34,6 +33,7 @@ if(isset($_SESSION['username'])){
                             $nickName = $info['nickName'];
                             $clientID = $info['clientID'];
                         }
+                        $db = null;
                         if(password_verify($pass, $hash)) {
                             session_start();
                             $_SESSION['username'] = $username;
@@ -64,7 +64,6 @@ if(isset($_SESSION['username'])){
         $trainer = $_POST['trainer'];
         
         //Authenticate client for current session
-        $db = connect();
         $query = $db->prepare("SELECT trainerID, email, passwordDigest, activated FROM trainers WHERE email = '$trainer'") or die("could not check member");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -90,6 +89,7 @@ if(isset($_SESSION['username'])){
                         $trainerID = $info['trainerID'];
                         $nickName = $info['nickName'];
                     }
+                    $db = null;
                     if(password_verify($pass, $hash)) {
                         session_start();
                         $_SESSION['trainer'] = $trainer;

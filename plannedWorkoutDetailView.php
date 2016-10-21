@@ -10,7 +10,7 @@
  
             <div class = "main">
                 <center>
-              <?php if($filled ==1){ ?>
+              <?php if($filled > 0){ ?>
                         <p>Workout Number: <?php echo $workoutID; ?></p>
                         <table cellpadding="2" cellspacing="2" border="1" bordercolor="#66ccff" bgcolor="#66ccff">
                             <tr>
@@ -51,11 +51,14 @@
                             foreach($basket as $exLine){
                                             ?>
                                             <tr>
-                                                <?php if ($exLine[2] == 1){ ?>
-                                                <td  rowspan="<?php echo $exLine[7] ?>"><?php echo $exLine[0]; ?></td><!-- exName -->
+                                                <?php if ($exLine[2] == 0){ 
+                            /**************************Put exName and adaptation in first column for each exercise*************************/
+                                                $adaptName = getAdaptName($exLine[8]);
+                                                ?>
+                                                <td  rowspan="<?php echo $exLine[7] ?>"><?php echo $exLine[0].' as '.$adaptName; ?></td><!-- exName -->
                                                                     <?php    } ?>
                                                 
-                                                <td class="setNumber" ><?php echo $exLine[2]; ?></td><!-- setNumber -->
+                                                <td class="setNumber" ><?php echo $exLine[2] + 1; ?></td><!-- setNumber ( equals setIndex + 1 -->
                                         <?php if($exLine[1] == 1 || $exLine[1] == 1){ ?>
                                                 <td class="repDurWei"><?php echo $exLine[5].' reps'; ?></td><!-- reps -->
                                         <?php   }else{ ?>
@@ -79,7 +82,7 @@
                             <a href="navWorkoutPlanner.php?workoutID=<?php echo $workoutID; ?>"><div class ="createWorkoutButton" style="float:left;">Save workout</div></a>
                         </div></center>
              <?php }else{ ?>
-                         <p>No exercises planned for this workout</p>
+                         <p>No exercises planned for workout #<?php echo $workoutID; ?></p>
                         <a href="navExSelector.php?workoutID=<?php echo $workoutID; ?>"><div class ="createWorkoutButton">Edit workout</div></a>
             <?php  }
              ?>

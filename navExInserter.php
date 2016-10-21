@@ -1,37 +1,20 @@
 <?php
 /***************************This page updates the workoutBasket when an exercise is added or removed from exSelector**********/
-
 session_start();
-require_once('connect.php');
 $db = connect();
 
 /** handle request for removal of exercise from a workout**********/
         //will need to make more of these for cases where person has not registered
-        if(isset($_GET['index'])  && isset($_GET['exName']) && isset($_GET['workoutID'])){
-                //remove exercise from array and workout basket in database
-                $sql =("DELETE FROM workoutBasket WHERE exID = ? AND clientID = ? and workoutID = ?");
-                $stmt = $db->prepare($sql);
-                $stmt->execute(array($_GET['exID'], $_SESSION['clientID'], $_GET['workout']));
+        if(isset($_GET['index'])  && isset($_GET['exID']) && isset($_GET['workoutID']) && isset($_SESSION['clientID'])){
                 
-                //Put cart into an array
-                $basket = array();
-                $creator = array();
-                $query = $db->prepare("SELECT exercises.exID, exercises.exName, workoutBasket.setCount 
-                                        FROM exercises 
-                                        INNER JOIN workoutBasket 
-                                        ON exercises.exID = workoutBasket.exID 
-                                        WHERE workoutBasket.clientID = '$clientID'") or die("could not query workoutBasket");
-                $query->execute();
-                $row = $query->fetchAll(PDO::FETCH_ASSOC);
-                //read each returned item's info
-                 foreach($row as $info){
-    	        //put exercises into a basket for use today 
-    	            $creator[0] = $info['exName'];
-    	            $creator[1] = $info['setCount'];
-    	            $creator[2] = $info['exiD'];
-    	            $basket[] = $creator;
-                 }
-                 include('exTableView.php');
+                //remove exercise from array and workout basket in database
+                $sql =("DELETE FROM workoutBasket 
+                WHERE exID = ? AND workoutID = ?");
+                $stmt = $db->prepare($sql);
+                $stmt->execute(array($_GET['exID'], $_GET['workoutID']));
+                
+                $deleteMessage = 'exercise removed from workout';
+                                echo "<script type='text/javascript'>alert('$deleteMessage');</script>";
         }
 
 /*** handle request for addition of new exercises to a workout**************/
@@ -41,20 +24,8 @@ if(isset($_SESSION['clientID'])  && isset($_POST['exID']) && isset($_POST['setCo
     $clientID = $_SESSION['clientID'];
     $setCount = $_POST['setCount'];
     $adaptID = $_POST['adaptID'];
-    include('getAdaptName.php');
+    $adaptName = getAdaptName($adaptID);
     $workoutID = $_POST['workoutID'];
-    /***************************Retrieve adaptationID based on adaptName passed**************************************************/
-    $query = $db->prepare("SELECT adaptationID FROM adaptations WHERE adaptName = '$adaptName'") or die("could not search");
-    $query->execute();
-    $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    $countEx = count($result);
-    if($countEx == 0){
-        echo('no adaptation named '.$adaptName);
-    }else{
-        foreach($result as $info){
-            $adaptationID = $info['adaptationID'];  
-        }
-    }
     
     //***************************Retrieve exID from database for comparison to existing exercise in client's workoutBasket**************************************        
     $query = $db->prepare("SELECT exID FROM exercises WHERE exID = '$exercise' LIMIT 1") or die("could not search");
@@ -66,7 +37,7 @@ if(isset($_SESSION['clientID'])  && isset($_POST['exID']) && isset($_POST['setCo
             $exID = $info['exID'];
         }
 
-        /**Query workoutBasket for current client**************************************************************************/
+        /**Query workoutBasket for current client with current workoutID**************************************************************/
         
         $query = $db->prepare("SELECT workoutBasket.exID, workoutBasket.setCount, workoutBasket.adaptationID
                                 FROM workoutBasket 
@@ -96,44 +67,46 @@ if(isset($_SESSION['clientID'])  && isset($_POST['exID']) && isset($_POST['setCo
     	            $repeatSets += 1;
     	        }
     	    }
-    	    if($index == -1){   //make new row in workoutBasket since no exercise currently in cart with same exID*****************************************
-                for($x=1; $x<=$setCount; $x++){
-        	       $query = $db->prepare("INSERT INTO workoutBasket ( exID, setCount, workoutID, setIndex, adaptationID) VALUES(?, ?, ?, ?, ?)") or die("could not search");
-                    $query->execute(array($exID, $setCount, $workoutID, $x, $adaptationID));
-  
-                    $inserted = 1;
-                    $message = 'adding '.$setCount.' sets of Ex#'.$exercise.' to the list';
+    	    if($index == -1){
+//make new rows in workoutBasket since no exercise currently in cart with same exID*****************************************
+                for($x=0; $x<$setCount; $x++){
+        	        $query = $db->prepare("INSERT INTO workoutBasket ( exID, setCount, workoutID, setIndex, adaptationID) VALUES(?, ?, ?, ?, ?)") or die("could not search");
+                    $query->execute(array($exID, $setCount, $workoutID, $x, $adaptID));
                 }
+                $inserted = 1;
+                    $addMessage = 'adding '.$setCount.' sets of Ex #'.$exercise.' to the list';
+                    echo "<script type='text/javascript'>alert('$addMessage');</script>";
+                
             }else if(index == 0){
+                 $repeatMessage = 'repeated exercise found';
+                echo "<script type='text/javascript'>alert('$repeatMessage');</script>";
                 /********************note changes to set count and adaptation ID for any updates to exercises already in basket**********************/
-                            $query = $db->prepare("SELECT adaptName FROM adaptations WHERE adaptationID = '$oldAdaptation'") or die("could not search");
+                            $query = $db->prepare("SELECT adaptationID FROM workoutBasket WHERE workoutID = '$workoutID' AND exID ='$exercise'") or die("could not search");
                             $query->execute();
                             $result = $query->fetchAll(PDO::FETCH_ASSOC);
                             $countEX = count($result);
-                if(count == 1){
-                    foreach($result as $info){
-                        $oldAdapt = $info['adaptation'];  
-                    }
-
+                            if($countEX > 0){
+                                foreach($result as $info){
+                                    $oldAdapt = $info['adaptationID'];  
+                                }
+                                $oldAdaptName = getAdaptName($oldAdapt);
                 
-                $message = 'Exercise previously marked as '.$oldAdapt.' exercise for '.$repeatSets.' sets.  But now it is adjusted to '.$setCount.' sets for '.$adaptName;
-                    for($x=1; $x<=$setCount; $x++){
-                        $sql = "UPDATE 'workoutBasket'   
-                            SET 'workoutID' = :workoutID,
-                            'exID' = :exID,
-                            'setCount` = :setCount,
-                            'setIndex' = :setIndex
-                            adaptationID = :adaptationID
-                            WHERE `workoutID ` = :workoutID AND 'setCount' = :setCount;";
-                        
-                        
-                         $statement = $db->prepare($sql);
-                         $statement->bindValue(":workoutID", $workoutID);
-                         $statement->bindValue(":exID", $currentEx);
-                         $statement->bindValue(":setCount", $setCount);
-                         $statement->bindValue(":setIndex", $x);
-                         $statement->bindValue(":adaptationID", $adaptationID);
-                         $count = $statement->execute();
+                $updateMessage = 'Exercise previously marked as '.$oldAdaptName.' exercise for '.$repeatSets.' sets.  But now it is adjusted to '.$setCount.' sets of '.$adaptName;
+                echo "<script type='text/javascript'>alert('$updateMessage');</script>";                    
+                
+                 /********************   Delete old workoutBasket entries and insert new ones *******************/
+                                $sql = "DELETE FROM workoutBasket 
+                                        WHERE exID = '$exID' AND workoutID = '$workoutID'";
+                            
+                                // use exec() because no results are returned
+                                $db->exec($sql);
+                                $deleteMessage = 'Record deleted successfully';
+                                echo "<script type='text/javascript'>alert('$deleteMessage');</script>";
+                 /********************   Insert new lines into workoutBasket*******************/
+                for($x=0; $x<$setCount; $x++){
+                    $query = $db->prepare("INSERT INTO workoutBasket ( exID, setCount, workoutID, setIndex, adaptationID) VALUES(?, ?, ?, ?, ?)") or die("could not search");
+                    $query->execute(array($exercise, $setCount, $workoutID, $x, $adaptID));
+              
                     }
                     $inserted = 1;
                 }
@@ -141,23 +114,22 @@ if(isset($_SESSION['clientID'])  && isset($_POST['exID']) && isset($_POST['setCo
         //add an exercise to an empty basket *******************************************************************************************************************
         }else if($count == 0){
             $inserted = 1;
-            $message = 'creating new basket<br/>';
-            
-            for($x=1; $x<=$setCount; $x++){
+            $message = 'creating new basket';
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            for($x=0; $x<$setCount; $x++){
                 //add lines to workoutBasket*****************************************************************************************************************************
                 $query = $db->prepare("INSERT INTO workoutBasket ( exID, setCount, workoutID, setIndex, adaptationID) VALUES(?, ?, ?, ?, ?)") or die("could not search");
-                $query->execute(array($exID, $setCount, $workoutID, $x, $adaptationID));
+                $query->execute(array($exID, $setCount, $workoutID, $x, $adaptID));
             }
+            
         }
     }
-    echo $message;
-    
 }elseif(isset($_SESSION['trainer'])  && isset($_POST['exID']) && isset($_POST['setCount'])  && isset($_POST['adaptID'])  && isset($_POST['workoutID'])){
 
     $exercise = $_POST['exID'];
     $setCount = $_POST['setCount'];
     $adaptID = $_POST['adaptID'];
-    include('getAdaptName.php');
+    $adaptName = getAdaptName($adaptID);
     $workoutID = $_POST['workoutID'];
     
     //***************************Retrieve exID from database for comparison to existing exercise in client's workoutBasket**************************************        
@@ -202,65 +174,68 @@ if(isset($_SESSION['clientID'])  && isset($_POST['exID']) && isset($_POST['setCo
     	        }
     	    }
     	    if($index==-1){   //make new row in workoutBasket since no exercise currently in cart with same exID*****************************************
-                for($x=1; $x<=$setCount; $x++){
+                for($x=0; $x<$setCount; $x++){
         	       $query = $db->prepare("INSERT INTO workoutBasket ( exID, setCount, workoutID, setIndex, adaptationID) VALUES(?, ?, ?, ?, ?)") or die("could not search");
-                    $query->execute(array($exID, $setCount, $workoutID, $x, $adaptationID));
-  
-                    $inserted = 1;
-                    $message = 'adding '.$setCount.' sets of Ex#'.$exercise.' to the list';
+                    $query->execute(array($exID, $setCount, $workoutID, $x, $adaptID));
                 }
+                    $inserted = 1;
+                    $addMessage = 'adding '.$setCount.' sets of Ex#'.$exercise.' to the list';
+                    echo "<script type='text/javascript'>alert('$addMessage');</script>"; 
+                  
+                    
             }else if(index == 0){
-                echo('repeated exercise found');
+                $repeatMessage = 'repeated exercise found';
+                echo "<script type='text/javascript'>alert('$repeatMessage');</script>";
                 /********************note changes to set count and adaptation ID for any updates to exercises already in basket**********************/
                     $oldAdaptationID = $basket[$repeatLine][3];
                     $currentEx = $basket[$repeatLine][1];
-                    $query = $db->prepare("SELECT adaptName FROM adaptations WHERE adaptationID = '$oldAdaptationID'") or die("could not search");
+                    $query = $db->prepare("SELECT adaptationID FROM workoutBasket WHERE workoutID = '$workoutID' AND exID = '$exID'") or die("could not search");
                     $query->execute();
                     $result = $query->fetchAll(PDO::FETCH_ASSOC);
                     $count = count($result);
                 if($count == 1){
                     foreach($result as $info){
-                        $oldAdapt = $info['adaptName'];  
+                        $oldAdapt = $info['adaptationID'];  
                     }
+                    $oldAdaptName = getAdaptName($oldAdapt);
 
                 
-                echo  'Exercise previously marked as '.$oldAdapt.' exercise for '.$repeatSets.' sets.  But now it is adjusted to '.$setCount.' sets for '.$adaptName;
-                       try {
-                                // sql to delete a record
-                                $sql = "DELETE FROM workoutBasket WHERE exID = '$exID'";
+                $updateMessage =  'Exercise previously marked as '.$oldAdaptName.' exercise for '.$repeatSets.' sets.  But now it is adjusted to '.$setCount.' sets of '.$adaptName;
+                echo "<script type='text/javascript'>alert('$updateMessage');</script>";       
+                       
+ /********************   Delete old workoutBasket entries and insert new ones *******************/
+                                $sql = "DELETE FROM workoutBasket 
+                                WHERE exID = '$exID' AND workoutID = '$workoutID'";
                             
                                 // use exec() because no results are returned
                                 $db->exec($sql);
-                                echo "Record deleted successfully";
-                            }
-                        catch(PDOException $e)
-                            {
-                                echo $sql . "<br>" . $e->getMessage();
-                            }
+                                $deleteMessage = 'Record deleted successfully';
+                                echo "<script type='text/javascript'>alert('$deleteMessage');</script>";
 
-                       
-                        for($x=1; $x<=$setCount; $x++){
-                            //add lines to workoutBasket*****************************************************************************************************************************
-                            $query = $db->prepare("INSERT INTO workoutBasket ( exID, setCount, workoutID, setIndex, adaptationID) VALUES(?, ?, ?, ?, ?)") or die("could not search");
-                            $query->execute(array($exID, $setCount, $workoutID, $x, $adaptationID));
+  /*************************Insert new workoutBasket entries******************************************/                     
+                        for($x=0; $x<$setCount; $x++){
+                    $query = $db->prepare("INSERT INTO workoutBasket ( exID, setCount, workoutID, setIndex, adaptationID) VALUES(?, ?, ?, ?, ?)") or die("could not search");
+                    $query->execute(array($exercise, $setCount, $workoutID, $x, $adaptID));
                         }
                     $inserted = 1;
                 }
+                
             }
+        ;
         //add an exercise to an empty basket *******************************************************************************************************************
         }else if($count == 0){
             $inserted = 1;
-            $message = 'creating new basket<br/>';
+            $message = 'creating new basket';
             
-            for($x=1; $x<=$setCount; $x++){
+            for($x=1; $x<$setCount; $x++){
                 //add lines to workoutBasket*****************************************************************************************************************************
                 $query = $db->prepare("INSERT INTO workoutBasket ( exID, setCount, workoutID, setIndex, adaptationID) VALUES(?, ?, ?, ?, ?)") or die("could not search");
                 $query->execute(array($exID, $setCount, $workoutID, $x, $adaptID));
             }
+           
+           
         }
     }
-    echo $message;
-    
-    
+    echo "<script type='text/javascript'>alert('$message');</script>";
 }
 ?>

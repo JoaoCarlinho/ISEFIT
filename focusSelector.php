@@ -21,7 +21,7 @@ $row = $query->fetchAll(PDO::FETCH_ASSOC);
             <center>                       
                 <select id="focusSelector" name="focusID" >
                     <option value="1" selected="selected"><?php echo $foci[0][1]; ?></option>
-           <?php for ($x = 0; $x < count($foci) ; $x++){ 
+           <?php for ($x = 2; $x < count($foci) ; $x++){ 
                         echo('<option value="'.$x.'">'.$foci[$x-1][1].'</option>');
                  }
            ?>

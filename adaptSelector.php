@@ -19,7 +19,8 @@ $row = $query->fetchAll(PDO::FETCH_ASSOC);
     <div class="adaptSelectBox"><center>Adaptation Selector</center>
             <center>                       
                 <select id="adaptSelector" name="adaptID" >
-           <?php for ($x = 1; $x < count($adaptations) ; $x++){ 
+                    <option value="1" select="selected"><?php echo $adaptations[0][1]; ?></option>
+           <?php for ($x = 2; $x < count($adaptations) ; $x++){ 
                         echo('<option value="'.$x.'">'.$adaptations[$x-1][1].'</option>');
                  }
            ?>

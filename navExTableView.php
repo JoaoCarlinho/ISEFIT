@@ -17,12 +17,12 @@
             ?>
                     <tr>
                         <!--This button will use ajax for single page application-->
-                        <!-- deleted button--><td ><a href="navExSelector.php?index=<?php echo $i; ?>&workoutID=<?php echo $workoutID; ?>&exName=<?php echo $basket[$i][0]; ?>">Delete</td> 
+                        <!-- delete button--><td ><a href="navExSelector.php?index=<?php echo $i; ?>&workoutID=<?php echo $workoutID; ?>&exID=<?php echo $basket[$i][2]; ?>">Delete</td> 
                         <!-- exName --><td><?php echo $basket[$i][0]; ?></td>
                         <!-- setCount --><td><?php echo $basket[$i][1]; ?></td>
                         <?php
                             $adaptID = $basket[$i][3];
-                            include ('getAdaptName.php'); 
+                            $adaptName = getAdaptName($adaptID); 
                         ?>
                         
                         <!-- adaptation --><td><?php echo $adaptName; ?></td>
@@ -36,6 +36,6 @@
     </table>
     <br/>
     <a href="navWorkoutPlanner.php?workoutID=<?php echo $workoutID; ?> "><input class="createWorkoutButton" type="submit" value="Plan Workout!"/></a><br/><br/>
-    <a href="navIndex.php"><input style="background-color:red; font-weight:bold;" type="submit" value="back to workouts"/></a>
+    <a href="navIndex.php"><input style="background-color:red; font-weight:bold; border-radius:8px; height:40px; width:150px; color:white;" type="submit" value="back to workouts"/></a>
     
 </div>

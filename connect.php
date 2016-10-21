@@ -4,8 +4,8 @@ $conn_error = 'Could not connect';
 function connect(){
     
 $host = 'theho014.mysql.guardedhost.com';
-$user = 'theho014_JoaoTC';
-$password = 'g3t$MONEY16uk';
+$user = 'theho014_reader';
+$password = 'g3t$COLLEGE16us';
 $database='theho014_iseFit';
 
 	try{

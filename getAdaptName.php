@@ -1,5 +1,6 @@
 <?php
-$db = connect();
+function getAdaptName($adaptID){
+        $db = connect();
         $query = $db->prepare("SELECT adaptName FROM adaptations
                                WHERE adaptationID = '$adaptID'") or die("could not check member");
         $query->execute();
@@ -10,4 +11,6 @@ $db = connect();
         	            $adaptName=$info['adaptName'];
                      }
                 }
+        return $adaptName;
+}
 ?>

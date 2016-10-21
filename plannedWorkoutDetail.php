@@ -1,11 +1,12 @@
 <?php
 include('session.php');
+include('getAdaptName.php');
+$db = connect();
 if(isset($_GET['workoutID'])){
     $workoutID = $_GET['workoutID'];
-    /************************pull all info from workout table, then pull info from workoutBasket for exercises*****************/
-                $db = connect();
+    /************************pull all info from workout table************************************************/
                 $query = $db->prepare("SELECT adaptation, modeID, focus, datePlanned, filled
-                            FROM workouts 
+                            FROM workouts
                             WHERE workoutID = '$workoutID'") or die("could not query workoutBasket");
                 $query->execute();
                 $row = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -16,34 +17,41 @@ if(isset($_GET['workoutID'])){
                         $modeID = $info['modeID'];
                         $focus = $info['focus'];
                         $workoutDate = $info['datePlanned'];
-                        $filled = $info['filled'];
                     }
-                    
+/****************************workout exists, so pull info from workoutBasket for this workout if there is any**********/
+                    $query = $db->prepare("SELECT exID
+                                FROM workoutBasket
+                                WHERE workoutID = '$workoutID'") or die("could not query workoutBasket");
+                    $query->execute();
+                    $row = $query->fetchAll(PDO::FETCH_ASSOC);
+                    $filled = count($row);
                 }
                 
-        if($filled == 1){        
+        if($filled > 0){        
             $basket = array();
-            $query = $db->prepare("SELECT workoutBasket.exID, workoutBasket.setIndex, workoutBasket.setCount, workoutBasket.durationPlan, workoutBasket.repsPlan, workoutBasket.weightPlan, exercises.exName, exercises.exTypeID
+            $query = $db->prepare("SELECT workoutBasket.exID, workoutBasket.setIndex, workoutBasket.setCount, workoutBasket.durationPlan, workoutBasket.repsPlan, workoutBasket.weightPlan, workoutBasket.adaptationID, exercises.exName, exercises.exTypeID
                                     FROM workoutBasket
                                     INNER JOIN exercises ON workoutBasket.exID = exercises.exID
-                                    WHERE workoutBasket.workoutID = '$workoutID'") or die("could not query workoutBasket");        
+                                    WHERE workoutBasket.workoutID = '$workoutID' ORDER BY exID ASC, setIndex ASC") or die("could not query workoutBasket");        
             $query->execute();
             $row = $query->fetchAll(PDO::FETCH_ASSOC);
             $count = count($row);
             if($count > 0){
                 foreach($row as $info){
     	        //put exercises into a basket for use today 
-    	            $creator[0]=$info['exName'];
-    	            $creator[1]=$info['exTypeID'];
-    	            $creator[2]=$info['setIndex'];
-    	            $creator[3]=$info['exID'];
-    	            $creator[4]=$info['durationPlan'];
-    	            $creator[5]=$info['repsPlan'];
-    	            $creator[6]=$info['weightPlan'];
-    	            $creator[7]=$info['setCount'];
-    	            $basket[]=$creator;
+    	            $exercise[0]=$info['exName'];
+    	            $exercise[1]=$info['exTypeID'];
+    	            $exercise[2]=$info['setIndex'];
+    	            $exercise[3]=$info['exID'];
+    	            $exercise[4]=$info['durationPlan'];
+    	            $exercise[5]=$info['repsPlan'];
+    	            $exercise[6]=$info['weightPlan'];
+    	            $exercise[7]=$info['setCount'];
+    	            $exercise[8]=$info['adaptationID'];
+    	            $basket[]=$exercise;
                  }
             }
+            $db = null;
         }
 include('plannedWorkoutDetailView.php');
 }

@@ -1,9 +1,8 @@
 <?php
 //User verification authentication and persistence       
-require_once('connect.php');
+
 //ensuring browser sessions set
 $db = connect();
-
 session_start();
 
 if(isset($_SESSION['username'])){
@@ -13,6 +12,7 @@ if(isset($_SESSION['username'])){
         }    
         $username = $_SESSION['username'];
         //Authenticate customer using current session
+        
         $query = $db->prepare("SELECT clientID, nickName, activated FROM clients WHERE email = '$username' LIMIT 1") or die("could not check member");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -25,7 +25,7 @@ if(isset($_SESSION['username'])){
                     $clientID = $info['clientID'];
                     $nickName = $info['nickName'];
                 }
-            
+                $db = null;
             if ($activated == 1){//account verified, log in
                        //log in
                     $_SESSION['logged'] = 1;
@@ -40,6 +40,7 @@ if(isset($_SESSION['username'])){
             }
             
         }else{
+            $db = null;
             $logged = 0;
             session_destroy();
             header("Location: login.php?message=invalid user info submitted");
@@ -49,7 +50,7 @@ if(isset($_SESSION['username'])){
     $username = $_POST['username'];
     
     //Authenticate client for current session
-    $db = connect();
+    
     $query = $db->prepare("SELECT nickName, activated, passwordDigest FROM clients WHERE email = '$username' LIMIT 1") or die("could not check member");
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -76,11 +77,14 @@ if(isset($_SESSION['username'])){
                             $hash = $info['passwordDigest'];
                         }
                         if(password_verify($pass, $hash)) {
+                            $db = null;
                             $_SESSION['logged'] = 1;
                             $_SESSION['username'] = $username;
                             $_SESSION['clientID'] = $clientID;
                             $_SESSION['nickName'] = $nickName;
+                            
                         }else{
+                            $db = null;
                             $message = 'Invalid user/password combination';
                             header('Location: login.php?message='.$message);
                         }
@@ -89,6 +93,7 @@ if(isset($_SESSION['username'])){
         
             
     }else{
+        $db = null;
         $logged = 0;
         session_destroy();
         $message = 'no account for email provided';
@@ -104,6 +109,7 @@ if(isset($_SESSION['username'])){
         }    
         $trainer = $_SESSION['trainer'];
         //Authenticate customer using current session
+        
         $query = $db->prepare("SELECT trainerID, nickName, email, activated FROM trainers WHERE email = '$trainer'") or die("could not check member");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -117,7 +123,6 @@ if(isset($_SESSION['username'])){
                 $trainer = $info['email'];
                 $nickName = $info['nickName'];
             }
-            
             if ($activated == 1){//account verified, log in
                        //log in
                     $_SESSION['logged'] = 1;
@@ -129,8 +134,9 @@ if(isset($_SESSION['username'])){
                     $message = 'account not activated';
                     header("Location: accountVerification.php?message=account not activated");
             }
-            
+        $db = null;    
         }else{
+            $db = null;
             $logged = 0;
             session_destroy();
             header("Location: login.php?message=invalid user info submitted");
@@ -140,7 +146,7 @@ if(isset($_SESSION['username'])){
     $trainer = $_POST['trainer'];
     
     //Authenticate client for current session
-    $db = connect();
+    
     $query = $db->prepare("SELECT email, nickName, activated, passwordDigest FROM trainers  WHERE email = '$trainer'") or die("could not check member");
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -155,6 +161,7 @@ if(isset($_SESSION['username'])){
                 $nickName = $info['nickName'];
         }
         if($activated == 0 ){
+                
                 $message = 'activate your account and get started';
                 header("Location: accountVerification.php?message=".$message);
         }else{
@@ -178,6 +185,7 @@ if(isset($_SESSION['username'])){
                             header('Location: login.php?message='.$message);
                         }
                     }
+                    $db = null;
         }
         
             

@@ -90,11 +90,8 @@ $db = connect();
             <div class = "main">
                 <?php 
                         include('navbar.php');
-                        if($filled==1){
-                            include('navFilledList.php');
-                        }else{
-                            include('navWorkoutList.php');
-                        }
+                        
+                        include('navWorkoutList.php');
                         
                 ?>
             </div>
