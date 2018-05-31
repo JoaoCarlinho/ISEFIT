@@ -1,0 +1,67 @@
+/* screen_layout_tiny */
+
+.appBar{ display:block; font-size: 20px;
+}
+
+.app_logo{
+       margin:0 auto 0 auto; display:block;
+}
+
+.head_links{  margin:0 auto 0 auto;
+        
+}
+
+.appBar ul li{  display: block; margin: 20px auto 0 auto;
+        
+}
+
+.banner{
+        width:100%;
+}
+
+.banner_image{ font-size:40px;
+    
+}
+
+.motto{
+    width:100%;
+}
+
+
+
+
+.main{
+        width:100%; margin:0 auto 20px auto; overflow:hidden scroll;  
+        
+}
+
+.slidebar{
+       width:100%;
+}
+
+
+
+
+.footer{
+        display:none;
+        
+}
+.footer_slider{  width:400px; height:400px; background-image:url(opaque_ise.png); 
+                background-size:contain; background-repeat:no-repeat; background-position: center; 
+        
+}
+
+.footer_links{
+        
+}
+
+.contact{
+        height:25px; width:220px;
+        
+}
+
+
+
+
+.createWorkoutButton{
+}

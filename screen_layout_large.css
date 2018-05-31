@@ -1,0 +1,68 @@
+/* large */
+
+.appBar{ display:block;
+}
+
+.app_logo{
+        font-size:25px; vertical-align:middle;
+        height:55px; line-height:55px; margin:0 0 0 20px; float:left;
+}
+
+
+.appBar ul li{  display:inline; float: left; margin: 0 0 0 10px;
+        
+}
+
+/* Hide the list item that contains the link that should open and close the appLink on small screens */
+ul.appLink li.icon {display: none;}
+
+.banner{
+       display:block;
+}
+
+.motto{
+        width:600px;
+}
+
+.main{
+        width:1000px; margin:0 auto 20px auto; overflow:hidden scroll;  
+        
+}
+
+.slidebar{
+       width:1000px;
+}
+
+.navLink {
+        float:left;
+}
+
+.footer{
+        display:block; width:1000px; height:200px;
+        
+}
+
+
+.footer_slider{ float:left; height:200px; width:200px;
+        
+}
+
+.footer_links{
+        
+}
+
+.contactInfo{
+        float:left; height:200px; width:220px;
+}
+
+.contact{
+         height:25px; width:220px;
+}
+
+.certList{
+        float:left;  margin:0 20px 0 0; width:220px;
+}
+
+.locale{
+        float:left;
+}
