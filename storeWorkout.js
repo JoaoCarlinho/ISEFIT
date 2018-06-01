@@ -26,10 +26,17 @@ function createXmlHttpRequestObject(){
     }
 }
 
+<<<<<<< HEAD
 function storeWorkout(){
     if(xHRO.readyState==0 || xHRO.readyState==4){
         try{
             xHRO.open("GET", "storeWorkout.php?confirm=1", true);
+=======
+function queueEx(){
+    if(xHRO.readyState==0 || xHRO.readyState==4){
+        try{
+            xHRO.open("GET", "queueEx.php?confirm=1", true);
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
             xHRO.onreadystatechange = handleServerResponseS;
             xHRO.send(null);
         }catch(e){
@@ -45,7 +52,11 @@ function handleServerResponseS(){
             var   xmlResponse = xHRO.responseXML;
             var   xmlDocumentElement = xmlResponse.documentElement;
             var   message = xmlDocumentElement.firstChild.data;
+<<<<<<< HEAD
             document.getElementById("workoutStatus").innerHTML = message;        
+=======
+            document.getElementById("queueStatus").innerHTML = message;        
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
         }else{
             alert(xHRO.statusText);
         }

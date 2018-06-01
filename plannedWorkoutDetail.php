@@ -5,7 +5,11 @@ $db = connect();
 if(isset($_GET['workoutID'])){
     $workoutID = $_GET['workoutID'];
     /************************pull all info from workout table************************************************/
+<<<<<<< HEAD
                 $query = $db->prepare("SELECT adaptation, modeID, focus, datePlanned
+=======
+                $query = $db->prepare("SELECT adaptation, modeID, focus, datePlanned, filled
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                             FROM workouts
                             WHERE workoutID = '$workoutID'") or die("could not query workoutBasket");
                 $query->execute();
@@ -24,10 +28,17 @@ if(isset($_GET['workoutID'])){
                                 WHERE workoutID = '$workoutID'") or die("could not query workoutBasket");
                     $query->execute();
                     $row = $query->fetchAll(PDO::FETCH_ASSOC);
+<<<<<<< HEAD
                     $basketCount = count($row);
                 }
                 
         if($basketCount > 0){        
+=======
+                    $filled = count($row);
+                }
+                
+        if($filled > 0){        
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
             $basket = array();
             $query = $db->prepare("SELECT workoutBasket.exID, workoutBasket.setIndex, workoutBasket.setCount, workoutBasket.durationPlan, workoutBasket.repsPlan, workoutBasket.weightPlan, workoutBasket.adaptationID, exercises.exName, exercises.exTypeID
                                     FROM workoutBasket

@@ -28,6 +28,20 @@ $nickname = $_SESSION['nickName'];
     }
 
 ?>
+<<<<<<< HEAD
+=======
+
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>ISE Fit Club | Fitness Engineered!</title>
+        <?php include ('header.php'); ?>
+        <link rel="shortcut icon" href="./img/ise.ico">
+    </head>
+    <body>
+    
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
         <div class="appBar">
             
                             <h1><div class="app_logo">
@@ -58,4 +72,10 @@ $nickname = $_SESSION['nickName'];
                             
                             
                             
+<<<<<<< HEAD
         </div>
+=======
+        </div>
+    </body>
+</html>
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024

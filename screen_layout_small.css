@@ -13,6 +13,12 @@
 
 .banner{
         width:100%; 
+<<<<<<< HEAD
+=======
+        display: flex;
+        flex-direction: column;
+        min-height: 130px;
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
 }
 
 .banner_image{ font-size:40px;

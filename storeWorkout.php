@@ -4,12 +4,23 @@ session_start();
 $db = connect();
 
 //storeWorkout.php
+<<<<<<< HEAD
 //This take the exBlob from buildWorkout.php for the current client and add to workouts table 
     if(isset($_POST['blob'])  && isset($_POST['adaptation']) && isset($_POST['focus'])&& isset($_POST['completion']) && isset($_SESSION['clientID'])){
         $exBlob = $_POST['blob'];
         $adapt = $_POST['adaptation'];
         $focus = $_POST['focus'];
         $completion = $_POST['completion'];
+=======
+//This take the exBlob from buildWorkout.php for the current client and add to workouts table
+    if(isset($_POST['blob'])  && isset($_POST['adaptation']) && isset($_POST['focus'])&& isset($_POST['completion']) && isset($_SESSION['clientID']) && isset($_POST['modeID'])){
+        $exBlob = $_POST['blob'];
+        $adapt = $_POST['adaptation'];
+        $mode = $_POST['modeID'];
+        $focus = $_POST['focus'];
+        $completion = $_POST['completion'];
+        $completeDate = $_POST['completeDate'];
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
         $clientID = $_SESSION['clientID'];
         $exMap = array();
         $createDate = date('Y-m-d H:i:s');
@@ -33,6 +44,11 @@ $db = connect();
             $query->execute(array($createDate, $clientID, $adapt, $focus, $exBlob, 0));
             echo 'workout stored';
         }
+<<<<<<< HEAD
+=======
+        
+        
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
         /**create hashMap called exMap from exBlob**/
         /**start by finding number of exercises and store as length of hash
         Use regex matching to count occurences of 'ex' in exBlob and set that to length of hash**/

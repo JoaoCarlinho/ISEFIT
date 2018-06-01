@@ -4,8 +4,12 @@
     and allow addition of exercises to the workouts **********/
 
 /**This page accepts requestID and pulls, client focus and adaptation to assign it to a new workout, or accept workoutID for request which has already begun being filled to update given workout ID 
+<<<<<<< HEAD
       A workoutBasket line will be created for each set of each exercise submitted
       **/
+=======
+      A workoutBasket line will be created for each set of each exercise submitted**/
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
 
 include('session.php');
 $logged = $_SESSION['logged'];
@@ -131,7 +135,11 @@ if($logged == 1){
                 }
             }
         
+<<<<<<< HEAD
         //Make sure to send email to client as well as trainer with table of assigned values
+=======
+        
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
         include('navExInserter.php');
         include('requestFillerTableView.php');
     }else{

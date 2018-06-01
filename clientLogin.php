@@ -8,8 +8,12 @@
             ?>
             <div class = "main">
                 <form name="login" action="clientLanding.php" method="post" accept-charset="utf-8">  
+<<<<<<< HEAD
        <center>
             <table>
+=======
+       <center><table>
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                 <tr>
                     <td><label for="usermail">Email</label></td>  
                     <td><input type="email" name="username" placeholder="your@email.com" required></td>
@@ -22,9 +26,13 @@
                     <td colspan="2" style="background:#cce6ff;"><center><input type="submit" value="Login"></center></td>
                 </tr>
                 </form>
+<<<<<<< HEAD
             </table>
             <a href="clientForgotPassword.php">Forgot Password?</a>
         </center>
+=======
+        </table></center>
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
             </div>
             <?php
             include('banner.php');

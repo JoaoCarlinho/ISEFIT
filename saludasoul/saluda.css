@@ -1,0 +1,230 @@
+body{
+        font-family: "Times New Roman", Times, serif; overflow: hidden scroll;
+        white-space:nowrap;        margin-left: auto; width:100%; background-color:#FFFFFF; 
+}
+
+.container{
+        background-color:#FFFFFF; color:#00000; height:1000px;  width:1400px; overflow:hidden scroll;
+        padding-top:40px; margin-right:auto; clear:both;
+}
+
+
+.topoff{
+    height:30px; 
+}
+.banner{
+        width:100%; height:300px; clear:both; border-bottom:3px solid #CEF6F5; 
+        border-top:3px solid #CEF6F5; border-style:ridge;  margin:  0 auto 20px auto;
+        border-right:none; border-left:none;  
+}
+
+
+.main{
+        width:100%; margin:0 auto 10px auto; overflow:hidden scroll; height:600px;
+}
+
+.social_media{
+        overflow:hidden; height:50px; margin:0 0 0 0; width: 200px; float:left;
+}
+
+.instagram{
+        float:left; margin: 0 10px 0 0; width:48px; height:48px;
+}
+.facebook{
+        background:url(../images/facebook.jpg); background-size:contain; float:left;
+        height:48px; width:48px; margin: 0 10px 0 0;  border-radius:10px; 
+}
+
+.twitter{
+        background:url(../images/twitpick.jpeg); background-size:contain; float:left;
+        height:47px; width:61px; border-radius:10px; margin: 0 10px 0 0;
+}
+
+
+
+.banner_image{
+        margin: 65px auto 0 auto; text-align:center; 
+}
+
+.motto{
+        color:#000000; margin:0 0 0 600; text-align:center; font-size:30px; float:left;
+}
+
+
+.nav_bar{
+        color:#FFFFFF; font-size:20px; margin:0 0 0 0;  
+        width:100%; height:65px; clear:both; border-radius:20px;
+}
+
+.nav_bar a{
+        color:#FFFFFF;
+}
+
+.nav_link {
+        padding:20px 0 0 0; margin:0; float:left; color:#888888;
+    height: 50px; width:200px; text-align:center; vertical-align:middle; 
+}
+
+#juancarlo{
+        clear:both; background-color:#0A0A2A; position:relative;
+        width:800px; height:500px;  margin:0 auto 0 auto;
+}
+
+
+.logo_center{
+        clear:both;
+        width:693px; height:412px;  margin:0 auto 0 auto;  background-image:url(images/opaque_ise.png); 
+        background-size:contain; background-repeat:no-repeat; z-index:-10;
+        background-position: center;
+}
+
+.optimizer{
+        clear:both;
+        width:693px; height:412px;  margin:-412px auto 0 auto;  background-image:url(images/ise_trainer.jpg); 
+        background-size:contain; background-repeat:no-repeat; visibility:hidden; opacity:1;
+        background-position: center;
+}
+
+.success{
+        clear:both;
+        width:493px; height:412px;  margin:-412px auto 0 auto; background-color:#0A0A2A;
+        background-size:contain; background-repeat:no-repeat; visibility:hidden; opacity:1;
+    
+        
+}
+
+.specialization{
+        clear:both;
+        width:693px; height:412px;  margin:-412px auto 0 auto ;  background-color:#0A0A2A;
+        background-size:contain; background-repeat:no-repeat; visibility:hidden; opacity:1;
+        
+}
+
+
+.programs{
+        clear:both;
+        width:693px; height:412px;  margin:-412px auto 0 auto;  background-image:url(images/isebod.jpg); 
+        background-size:contain; background-repeat:no-repeat; visibility:hidden; opacity:1;
+        background-position: center;
+}
+
+
+
+.footer{
+        margin:60px auto 0 auto; overflow:hidden scroll; height:160px; width:800px; clear:both;
+}
+.footer_slider{ float:left; height:200px; width:200px;
+        
+}
+
+.footer_links{
+        
+}
+
+.contact{
+        height:25px; width:220px;
+        
+}
+
+
+
+
+
+
+
+
+
+
+
+.juan_link{
+        color:#FFFFFF; background-size:contain; margin:0 auto 0 auto;
+        z-index:2; background-repeat:no-repeat;  
+        overflow:hidden; white-space: nowrap; 
+}
+
+
+
+#juan_logo{
+        width:150px;  height:150px; background-color:#0A0A2A; margin:200px auto 0 240px;
+        color:#FFFFFF; z-index:0; float:left;
+        
+}
+
+#tag_info{
+        width:500px;  height:150px; background-color:#0A0A2A; margin:200px 0 0 20px;
+        visibility:hidden; color:#FFFFFF; z-index:10; opacity:1; float:left;
+}
+
+#deg_info{
+        width:500px;  height:150px; background-color:#0A0A2A; margin:-150px 0 0 20px;
+        visibility:hidden; color:#FFFFFF; z-index:10; opacity:1; float:left;
+}
+
+#spec_info{
+        width:500px;  height:150px; background-color:#0A0A2A; margin:-150px 0 0 20px;
+        visibility:hidden; color:#FFFFFF; z-index:10; opacity:1; float:left;
+}
+
+#back_info{
+        width:500px;  height:150px; background-color:#0A0A2A; margin:-150px 0 0 20px;
+        visibility:hidden; color:#FFFFFF; z-index:10; opacity:1; float:left;
+}
+
+#service_box{
+        float:left; height:400px;  width:130px; overflow:hidden scroll; 
+        margin:0 auto 0 auto; color:#0A0A2A; 
+}
+
+.service_list{
+        clear:both; margin:auto 0 auto 0; height:35px; width:130px; padding:15px 0 0 0;
+        text-align:center; border-radius:12px; background:#FFFFFF; vertical-align:middle;
+        border-width:3px; border-style:ridge;
+}
+
+#service_show{
+        float:left; width:500px; height:250px; margin:50px 0 0 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.option{
+        float:left; height:40px; width:250px; color:#0A0A2A; padding:20px 0 20px 0; font-size:40px;
+        background-color:#99CCFF; border:#FFFFFF; border-radius:25px; border-style:outset; 
+        margin-top:20px;  margin-bottom:20px;
+        
+}
+
+.option_info{
+                width:230px; height:450px; margin:0 0 0 30px; color:#FFFFFF; font-size:20px; float:left;
+}
+.price{
+        background-color:green; font-size:35px; width:150px; border-radius:25px;
+}
+
+#four_visits{
+                visibility:hidden;
+}
+
+#eight_visits{
+                margin:-600px auto 0 auto; visibility:hidden;
+}
+
+#twelve_visits{
+                margin:-600px auto 0 auto; visibility:hidden;
+}

@@ -1,5 +1,9 @@
 <?php include('header.php') ?>
+<<<<<<< HEAD
 <div class="slidebar">
+=======
+<!--<div class="slidebar">
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
     <div class="left_nav">
         <div class="left_link" onMouseOver="description()" onMouseOut="mclosetime();">ABOUT "THE OPTIMIZER"
         </div>
@@ -23,4 +27,8 @@
         <div class="logo_center" id="box">
         </div>
     </div>
+<<<<<<< HEAD
 </div>
+=======
+</div>-->
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024

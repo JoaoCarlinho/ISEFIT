@@ -8,7 +8,12 @@ once inside of each row, pull out exName, exTypeID, and set number inside of eac
 <center>
     <table cellpadding="2" cellspacing="2" border="1">
             <tr>
+<<<<<<< HEAD
                 <?php for($bi=0; $bi<count($basket); $bi++){ ?>
+=======
+        
+                <?php for($bi=0; $bi<count($basket); $bi++){ /*********************$bi represents how many exercises are in basket*******/?>
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                     <tr>
                         <td>Delete</td>
                         <td><?php echo ($bi + 1); ?></td><!-- row number -->
@@ -83,7 +88,16 @@ once inside of each row, pull out exName, exTypeID, and set number inside of eac
                                </table>
                     <?php   } ?>   
                         </td>
+<<<<<<< HEAD
 <!---------------------------------- end sets and reps entry -------------------------------------------------------------------------------->
+=======
+<!---------------------------------- adaptation entry -------------------------------------------------------------------------------->
+                        <td>
+                            <input type="text" id="<?php echo $adaptationInput.$basket[$bi;?>" value="reps">
+                        </td>
+                        
+                        
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                     </tr>
                 <?php }
                         $numEx = count($basket);
@@ -175,6 +189,10 @@ function buildWorkout(){
             if(jBasket[bi][1]==1){//do this when exType is resistance of current exercise
             /*(resistance)(ex1_t1(type)_6(sets)_0s_12r(reps)40lbs_1s_12r_50lbs_2s_12r_60lbs_3s_12r_70lbs_4s12r_80lb*/
                     for(setCount=0; setCount<jBasket[bi][2]; setCount++){  //repeat for how many sets are stored for the set count
+<<<<<<< HEAD
+=======
+    /****************************************put together names of inputs and pull info to save repCounts for repCounts    ************************/
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                         var repString = jBasket[bi][0]+'set'+setCount+'repCount';
                         var weightString = jBasket[bi][0]+'set'+setCount+'weight';
                         exBlob+= '_'+setCount+'set_'+document.getElementById(repString).value+'reps_'+document.getElementById(weightString).value+'lbs';
@@ -225,7 +243,11 @@ function buildWorkout(){
     
     /** also need to send info to workoutLines table *********/
     var url ="storeWorkout.php";
+<<<<<<< HEAD
     var vars = "blob="+exBlob+"&adaptation="+adapt+"&focus="+focus+"&completion="+complete="&completeDate="+completeDate;;
+=======
+    var vars = "blob="+exBlob+"&adaptation="+adapt+"&focus="+focus+"&completion="+complete="&completeDate="+completeDate"&jBasket="+jBasket;
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
     xHRO.open("POST", url, true);
     //set content type header information for sending url encoded variables
     xHRO.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

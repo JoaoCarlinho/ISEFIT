@@ -33,7 +33,11 @@ function queueEx(){
     var exercise = document.getElementById("srch").value;
     var setCount = document.getElementById("exCount").value;
     var adaptation = document.getElementById("adaptation").value;
+<<<<<<< HEAD
     var vars = "exercise="+exercise+"&setCount="+setCount;
+=======
+    var vars = "exercise="+exercise+"&setCount="+setCount+"&adaptation="+adaptation;
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
     if(xHRO.readyState==0 || xHRO.readyState==4){
         try{
             

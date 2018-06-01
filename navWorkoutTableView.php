@@ -1,5 +1,8 @@
 <div class="exTable">
+<<<<<<< HEAD
     <center>Upcoming workouts</center>
+=======
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
     <table cellpadding="2" cellspacing="2" border="1">
         <tr>
             <th>id</th><th>created on</th><th>adaptation</th><th>focusID</th><th>Open Workout</th>

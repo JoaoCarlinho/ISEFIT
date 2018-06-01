@@ -18,7 +18,10 @@ if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['nick
             if(!preg_match($email_exp , $newEmail)) {
     			$message = 'Please enter a valid email for registration!';
                 header("Location: register.php?message=$message");
+<<<<<<< HEAD
                 exit;
+=======
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
             }else{
                     /***************************************determine if there is an client stored with same email******************************************/
                             $query = $db->prepare("SELECT * FROM trainers WHERE email = '$newEmail' ") or die("could not search groups");
@@ -30,7 +33,10 @@ if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['nick
                                             //email submitted is not unique, Return to groupCreation w/ message  
                                             $message = 'Someone is already registered wth email you submitted.';
                                             header("Location: trainerRegistration.php?message=$message");
+<<<<<<< HEAD
                                             exit;
+=======
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                             }else{
                                         //create ActivationCode
                                         $length = 30;
@@ -46,9 +52,64 @@ if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['nick
                                         $query->execute(array($firstName, $lastName, $nickName, $gender, $dob, $zip, $newEmail, $auCodeDigest, $enrollDate, $randomString));
                     
                                         $db = null;
+<<<<<<< HEAD
                                         
                                         //send verification email
                                         include('verifyEmail.php');
+=======
+                            
+                            
+                                                /***************************************Email confirmation with contactEmail*******************************************/        
+                                $email_from = "ISEFitClub@gmail.com";
+                        		$email_subject = "Spotter registration confirmation";
+                     		    $email_to = $newEmail .",". $email_from;
+                     
+                        		$comments = '
+                                <html>
+                                    <head>
+                                      <title>Registration Successful</title>
+                                    </head>
+                                    <center><body>
+                                        <p>Congratulations '.$nickName.'
+                                        You are now ready to optimize your clients with the Spotter,
+                                        <br/> by ISE Fit</p>
+                                        <p>Copy the code below  and login to activate your account</p>
+                                        <p>'.$randomString.'</p>
+                                        <p>Questions???<br/>
+                                        email: isefitclub@gmail.com</p>
+                                    </body></center>
+                                </html>
+                                ';
+                        
+                        		$error_message = "";
+                     
+                        		$email_exp = '/^[A-Za-z0-9._%-]+@+[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
+                     
+                          		if(!preg_match($email_exp,$newEmail)) {
+                            			$error_message .= 'The Email Address you entered does not appear to be valid.';
+                          		}
+                     
+                        		
+                      		    if(strlen($error_message) > 0) {die($error_message);}
+                     
+                     
+                        		function clean_string($string) {
+                          			$bad = array("content-type","bcc:","to:","cc:","href");
+                          			return str_replace($bad,"",$string);
+                        		}
+                     
+                        		$email_message = clean_string($comments);
+                     
+                        		// create email headers
+                                $headers  = 'MIME-Version: 1.0' . "\r\n";
+                                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    
+                        		$headers .= 'To:'.$email."\r\n";
+                                $headers .= 'From: Spotter Support <'.$email_from.'>' . "\r\n";
+                                $headers .= 'Reply-To: '.$email_from."\r\n".'X-Mailer: PHP/'.phpversion();
+                         
+                        		mail($email_to, $email_subject, $email_message, $headers);
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                             }
                 include('trainerIntro.php');
             }
@@ -67,7 +128,10 @@ if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['nick
             if(!preg_match($email_exp , $newEmail)) {
     			$message = 'Please enter a valid email for registration!';
                 header("Location: register.php?message=$message");
+<<<<<<< HEAD
                 exit;
+=======
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
             }else{
                     /***************************************determine if there is an client stored with same email******************************************/
                             $query = $db->prepare("SELECT * FROM clients WHERE email = '$newEmail' ") or die("could not search groups");
@@ -79,7 +143,10 @@ if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['nick
                                             //email submitted is not unique, Return to groupCreation w/ message  
                                             $message = 'Someone is already being spotted with email you submitted.';
                                             header("Location: register.php?message=$message");
+<<<<<<< HEAD
                                             exit;
+=======
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                             }else{
                                         //create ActivationCode
                                         $length = 30;
@@ -95,16 +162,73 @@ if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['nick
                                         $query->execute(array($firstName, $lastName, $nickName, $dob, $zip, $newEmail, $auCodeDigest, $enrollDate, $randomString));
                     
                                         $db = null;
+<<<<<<< HEAD
                                         
                                         //send verification email
                                         include('verifyEmail.php');
+=======
+                            
+                            
+                                                /***************************************Email confirmation with contactEmail*******************************************/        
+                                $email_from = "ISEFitClub@gmail.com";
+                        		$email_subject = "Spotter registration confirmation";
+                     		    $email_to = $newEmail .",". $email_from;
+                     
+                        		$comments = '
+                                <html>
+                                    <head>
+                                      <title>Registration Successful</title>
+                                    </head>
+                                    <center><body>
+                                        <p>Congratulations '.$nickName.'
+                                        You are now being optimized with the Spotter,<br/> by ISE Fit</p>
+                                        <p>Copy the code below  and login to activate your account</p>
+                                        <p>'.$randomString.'</p>
+                                        <p>Questions???<br/>
+                                        email: isefitclub@gmail.com</p>
+                                    </body></center>
+                                </html>
+                                ';
+                        
+                        		$error_message = "";
+                     
+                        		$email_exp = '/^[A-Za-z0-9._%-]+@+[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
+                     
+                          		if(!preg_match($email_exp,$newEmail)) {
+                            			$error_message .= 'The Email Address you entered does not appear to be valid.';
+                          		}
+                     
+                        		
+                      		    if(strlen($error_message) > 0) {die($error_message);}
+                     
+                     
+                        		function clean_string($string) {
+                          			$bad = array("content-type","bcc:","to:","cc:","href");
+                          			return str_replace($bad,"",$string);
+                        		}
+                     
+                        		$email_message = clean_string($comments);
+                     
+                        		// create email headers
+                                $headers  = 'MIME-Version: 1.0' . "\r\n";
+                                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    
+                        		$headers .= 'To:'.$email."\r\n";
+                                $headers .= 'From: Spotter Support <'.$email_from.'>' . "\r\n";
+                                $headers .= 'Reply-To: '.$email_from."\r\n".'X-Mailer: PHP/'.phpversion();
+                         
+                        		mail($email_to, $email_subject, $email_message, $headers);
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                             }  
                 include('athleteIntro.php');
             }
 }else{
     $message = 'Please ensure all requested info is submitted!';
     header("Location: register.php?message=$message");
+<<<<<<< HEAD
     exit;
+=======
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
 }
                         
 ?>         

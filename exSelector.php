@@ -1,6 +1,10 @@
 <?php /*************************************************** Create directory of exercises for use as autoComplete *************************************************/
         require_once('connect.php');
+<<<<<<< HEAD
         $query = $db->prepare("SELECT exName FROM exercises ORDER BY exName ASC") or die("could not display exercises");
+=======
+        $query = $db->prepare("SELECT exName FROM exercises ORDER BY exID ASC") or die("could not display exercises");
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
         $query->execute();
         $row = $query->fetchAll(PDO::FETCH_ASSOC);
         $count = count($row);

@@ -8,8 +8,13 @@ $db = connect();
         $query = $db->prepare("SELECT workoutBasket.workoutID, workoutBasket.exID, workoutBasket.setCount, exercises.exName, exercises.exTypeID
                                 From workoutBasket
                                 INNER JOIN workouts
+<<<<<<< HEAD
                                 WHERE workouts.clientID = '$clientID' AND workouts.basketStatus = 0
                                 ON workoutBasket.workoutID = workouts.workoutID
+=======
+                                ON workoutBasket.workoutID = workouts.workoutID
+                                WHERE workouts.clientID = '$clientID' AND workouts.basketStatus = 0
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                                 INNER JOIN exercises ON workoutBasket.exID = exercises.exID") or die("could not query workoutBasket");        
         $query->execute();
         $row = $query->fetchAll(PDO::FETCH_ASSOC);

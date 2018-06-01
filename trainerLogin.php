@@ -24,8 +24,12 @@
                     <td colspan="2" style="background:#cce6ff;"><center><input type="submit" value="Login"></center></td>
                 </tr>
                 </form>
+<<<<<<< HEAD
                 </table>
                 <a href="trainerForgotPassword.php">Forgot Password?</a></center>
+=======
+                </table></center>
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
             </div>
             <?php
             include('banner.php');

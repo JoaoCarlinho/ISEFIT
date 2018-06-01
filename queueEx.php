@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
     include('exArray.php');
+=======
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
     include('exInserter.php');
     
     if(isset($_POST['exercise'])){

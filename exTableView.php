@@ -20,5 +20,10 @@
     </table>
     <a href="index.php"><input type="submit" value="refresh list"/></a><br/>
     <a href="designWorkout.php?build=1"><input type="submit" value="Build Workout!"/></a>
+<<<<<<< HEAD
     <p>send basket to buildWorkout.php</p>
+=======
+    <p>send basket to buildWorkout.php</p>f
+    
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
 </div>

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-us">
+<<<<<<< HEAD
     <?php include('getAdaptName.php'); ?>
+=======
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
     <?php include('header.php'); ?>
     <body>
         <div class="container">
@@ -10,6 +13,7 @@
  
             <div class = "main">
                 <center><p>storing workout number <?php echo $workoutID; ?></p>
+<<<<<<< HEAD
             <p>Workout Number: <?php echo $workoutID; ?></p>
                         <table cellpadding="2" cellspacing="2" border="1" bordercolor="#66ccff" bgcolor="#66ccff">
                             <tr>
@@ -80,6 +84,37 @@
                                                     ?>
                     
                         </table><br>
+=======
+                <table cellpadding="2" cellspacing="2" border="1">
+                <tr><th>Exercise</th><th>Set</th><th>Count</th>  
+                
+                <?php
+                    $resistance = 0;
+                    foreach($workoutPlan as $exercise){
+                        if($exercise[1] == 1){
+                            $resistance = 1;
+                        }
+                    }
+                    if($resistance ==1){
+                ?>
+                    <th>weight</th></tr>
+                <?php
+                    }
+                ?>
+                
+                <?php foreach($workoutPlan as $exLine){ ?>
+                    <tr>
+                        <td><?php echo $exLine[0]; ?></td>
+                        <td><?php echo $exLine[2]; ?></td>
+                        <td><?php echo $exLine[3]; ?></td>
+            <?php      if($exLine[1] == 1){ ?>   
+                        <td><?php echo $exLine[4]; ?></td>
+            <?php       } ?>
+                    </tr>
+            <?php   }
+            ?>
+    </table><br>
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                  <a href="navIndex.php"><input style="background-color:green; font-weight:bold; border-radius:8px; height:20px; width:200px;" type="submit" value="back to workouts"/></a>
     </center>
             </div>

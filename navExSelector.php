@@ -34,6 +34,14 @@ $db = connect();
             }
             /*** research the result of a max function on an empty table ******/
             $workoutID = $oldMax + 1;
+<<<<<<< HEAD
+=======
+            $workoutMessage = 'new workout number: '.$workoutID
+            ?>
+            <center><?php echo "<script type='text/javascript'>alert('$workoutMessage');</script>"; ?></center>
+        
+        <?php
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
             
         }
 /*********************update workouts table with new workout for client*****************/        

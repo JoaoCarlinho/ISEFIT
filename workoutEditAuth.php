@@ -6,9 +6,13 @@ if (isset($_SESSION['clientID'])){
         $db = connect();
         $query = $db->prepare("SELECT workoutID
                                FROM workouts 
+<<<<<<< HEAD
                                WHERE clientID = :clientID AND workoutID = :workoutID ") or die("could not check member");
         $query->bindValue(":workoutID", $workoutID);
         $query->bindValue(":clientID", $clientID);
+=======
+                               WHERE clientID = '$clientID' AND workoutID = '$workoutID'") or die("could not check member");
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $count = count($result);

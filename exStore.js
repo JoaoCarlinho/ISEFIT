@@ -36,7 +36,10 @@ function process(){
         
     }else{
         setTimeout('process()',1000);
+<<<<<<< HEAD
         
+=======
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
     }
 }
 

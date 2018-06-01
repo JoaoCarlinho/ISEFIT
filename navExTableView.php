@@ -35,7 +35,11 @@
         </tr>
     </table>
     <br/>
+<<<<<<< HEAD
     <a href="plannedWorkoutDetail.php?workoutID=<?php echo $workoutID; ?> "><input class="createWorkoutButton" type="submit" value="Plan Workout!"/></a><br/><br/>
+=======
+    <a href="navWorkoutPlanner.php?workoutID=<?php echo $workoutID; ?> "><input class="createWorkoutButton" type="submit" value="Plan Workout!"/></a><br/><br/>
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
     <a href="navIndex.php"><input style="background-color:red; font-weight:bold; border-radius:8px; height:40px; width:150px; color:white;" type="submit" value="back to workouts"/></a>
     
 </div>

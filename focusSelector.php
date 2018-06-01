@@ -20,9 +20,15 @@ $row = $query->fetchAll(PDO::FETCH_ASSOC);
     <div class="focusSelectBox"><center>Focus Selector</center>
             <center>                       
                 <select id="focusSelector" name="focusID" >
+<<<<<<< HEAD
                     <option value="<?php echo $foci[0][0]; ?>" selected="selected"><?php echo $foci[0][1]; ?></option>
            <?php for ($x = 1; $x < count($foci) ; $x++){ 
                         echo('<option value="'.$foci[$x][0].'">'.$foci[$x][1].'</option>');
+=======
+                    <option value="1" selected="selected"><?php echo $foci[0][1]; ?></option>
+           <?php for ($x = 2; $x < count($foci) ; $x++){ 
+                        echo('<option value="'.$x.'">'.$foci[$x-1][1].'</option>');
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
                  }
            ?>
                 </select><br> 

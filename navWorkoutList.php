@@ -5,6 +5,7 @@ First step is to find the length of $basket
 The number of rows in the table will be = count($basket)
 once inside of each row, pull out exName, exTypeID, and set number inside of each row
 -->
+<<<<<<< HEAD
 <?php include('getAdaptName.php'); ?>
 <center>
     <p>Workout Number: <?php echo $workoutID; ?></p>
@@ -86,11 +87,117 @@ once inside of each row, pull out exName, exTypeID, and set number inside of eac
                         <br/>
                         <div id="updateNote"></div>
                             <br/>
+=======
+<center>
+    <form action="navStoreWorkout.php" method="post">
+        <input type="hidden" name="store" value="1"/>
+        <input type="hidden" name="workoutID" value="<?php echo $workoutID ?>"/>
+        <p>Enter your workout detalis</p>
+        <table border="1" cellspacing="0">
+            <tr>
+                <th>exercise</th><th>set</th><th colspan="2">info</th>
+            </tr>
+                <tr>
+                    
+                    <?php for($bi=0; $bi<count($basket); $bi++){ /*********************$bi represents how many exercise lines are in basket*******/
+                        $setIndex = 0;
+                        for($exIndex = $bi - 1; $exIndex>=0; $exIndex--){
+                            if($basket[$bi][3] == $basket[$exIndex][3]){
+                                $setIndex++;
+                            }
+                        }
+                    ?>
+                        <tr>
+                            <?php   $setNumber = $setIndex + 1;
+                                    $setString = $basket[$bi][0].' set '.$setNumber;
+                                    
+                                    if($setNumber == 1){
+                            ?>
+                                    <td rowspan="<?php echo $basket[$bi][2]; ?>"><?php echo $basket[$bi][0]; ?></td><!-- exName -->
+                            <?php   } ?>
+                            <td><?php echo $setNumber; ?></td><!-- exName and set number -->
+                            <td><?php /** input fields based on exTypeID (columns) and number of sets(rows)**/
+                                if( $basket[$bi][1] == 1){     ?>
+    <!----------------------------if exTypeID is 1(create an columns for weight and reps for each set(row)---------------------------------------->
+                                   
+                                   <table cellpadding="2" cellspacing="2" border="1">
+                                       <tr><th>weight</th><th>reps</th></tr>
+                                                   <?php   $weightInput = $setString.' weight';
+                                                           $repCountInput = $setString.' repCount';?>
+                                           <tr><td><input type="text" id="<?php echo $weightInput;?>" name="<?php echo $weightInput;?>" value="weight"></td><td><input type="text" id="<?php echo $repCountInput;?>" name="<?php echo $repCountInput;?>"  value="reps"></td></tr>
+                                                                   
+                             <!--                         Finding out the names of the input boxes                                          -->                                      
+                                                            <?php/**   echo '<script language="javascript">';
+                                                                    echo 'alert("'.$repCountInput.'"+" for rep input "+"'.$weightInput.'"+" for weight input" )';
+                                                                    echo '</script>';**/
+                                                            ?>
+                                       
+                                       
+                                   </table>
+                        <?php   }else if( $basket[$bi][1] == 2){     ?>
+    <!-----------------------------if exTypeID is 2(create one column for duration of each set(row)----------------------------------------------->
+                                   
+                                   <table cellpadding="2" cellspacing="2" border="1">
+                                       <tr><th>time</th></tr>
+                                                   <?php $timeInput= $setString.' duration';?>
+                                           <tr><td><input type="text" id="<?php echo $timeInput;?>" name="<?php echo $timeInput;?>" value="seconds"></td></tr>
+                             <!--                         Finding out the names of the input boxes                                          -->                                      
+                                                            <?php/**   echo '<script language="javascript">';
+                                                                    echo 'alert("'.$timeInput.'"+" for time input" )';
+                                                                    echo '</script>';**/
+                                                            ?>          
+                                       
+                                   </table> 
+                        <?php   }else if( $basket[$bi][1] == 3){    ?>
+    <!-------------------------------if exTypeID is 3(create one column for duration of each set(row)---------------------------------------------->
+                                   
+                                   <table cellpadding="2" cellspacing="2" border="1">
+                                       <tr><th>duration</th></tr>
+                                                       <?php $timeInput= $setString.' duration';?>
+                                           <tr><td><input type="text" id="<?php echo $timeInput;?>" name="<?php echo $timeInput;?>" value="seconds"></td></tr>
+                             <!--                         Finding out the names of the input boxes                                          -->                                      
+                                                            <?php/**   echo '<script language="javascript">';
+                                                                    echo 'alert("'.$timeInput.'"+" for time input" )';
+                                                                    echo '</script>';**/
+                                                            ?>           
+                                       
+                                       
+                                   </table> 
+                        <?php   }else if( $basket[$bi][1] == 4){    ?>
+    <!-------------------------------if exTypeID is 4(create one column for count of each set(row)------------------------------------------------->
+                                   
+                                   <table cellpadding="2" cellspacing="2" border="1">
+                                       <tr><th>count</th></tr>
+                                                       <?php $repCountInput = $setString.' repCount';?>
+                                           <tr><td><input type="text" id="<?php echo $repCountInput;?>" name="<?php echo $repCountInput;?>" value="reps"></td></tr>
+                             <!--                         Finding out the names of the input boxes                                          -->                                      
+                                                            <?php/**   echo '<script language="javascript">';
+                                                                    echo 'alert("'.$repCountInput.'"+" for rep input" )';
+                                                                    echo '</script>';**/
+                                                            ?>           
+                                       
+                                       
+                                   </table>
+                        <?php   } ?>   
+                            </td>
+                        </tr>
+                    <?php }
+                            $numEx = count($basket);
+                    ?>
+                </tr>
+        </table><br>
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
     
         <input type="radio" name="mode" value="3" checked>Independent Workout<br>
         <input type="radio" name="mode" value="2">Personal Training<br>
         <input type="radio" name="mode" value="1" checked>Group Training<br><br>
     
+<<<<<<< HEAD
+=======
+        <input type="radio" name="complete" value="1" checked>Workout Complete<br>
+        <input type="radio" name="complete" value="0">Planned for a later date<br>
+        
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
         <div id="date">
             <label for="date">Completion date</label>
             <input type="date" name="completeDate" id="completeDate">
@@ -106,6 +213,7 @@ combined with the values in the inputs for each exercise  -->
 
 
 <script type="text/javascript">
+<<<<<<< HEAD
 
 function editWorkout(id){
     document.getElementById(id).contentEditable = true;
@@ -131,6 +239,21 @@ function loadDoc(id){
     xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlHttp.send("id="+id+"&newValue="+newValue);
 } 
+=======
+/*******************************fuction to include date selector if user indicates they've completed the current workout**************/
+function checkCompletion(){
+    var radios = document.getElementsByName('complete');
+
+        if(radios[1].checked) {
+            // hide selector is second radio box checked
+            document.getElementById(date).style.display = 'none';
+        }else if(radio[0].checked){
+            document.getElementById(date).style.display = 'block';
+        }
+    
+    setTimeout(checkCompletion(), 1000);
+}
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
 
 
 /****************Find all exercises in the workoutBasket for the current client (using session client) and add number of sets to them */

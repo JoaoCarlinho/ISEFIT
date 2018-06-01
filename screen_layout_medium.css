@@ -18,7 +18,11 @@ ul.appLink li.icon {display: none;}
 
 
 .banner{
+<<<<<<< HEAD
         width:1000px; 
+=======
+        width:1000px; height:150px;  background-size:100px 100px;  
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
 }
 
 .motto{

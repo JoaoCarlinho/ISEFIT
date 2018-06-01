@@ -31,6 +31,11 @@ $limit = 'LIMIT ' . ($pagenum - 1) * $page_rows .',' .$page_rows;
 /****************************This is the query again for grabbing just one page of rows by applying limit*********************/
 $query = $db->prepare("SELECT exerciseID, name, focusID, exerciseTypeID FROM exercises ORDER BY exerciseID DESC $limt") or die("could not display exercises");
 $query->execute();
+<<<<<<< HEAD
+=======
+
+$db = null;
+>>>>>>> 297478587b120b121a1bd94d40953e29eea03024
 /****************************This shows the user what page they are on, and the total number of pages*********************/
 $textline1 = "Exercises (<b>$rows</b>)";
 $textline2 = "Page <b>$pagenum</b> of <b>$last_page</b>";
